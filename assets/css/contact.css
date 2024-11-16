@@ -1,0 +1,79 @@
+:root {
+    --mainColor: #1a1a1a;
+    --mainFont: 'Oxanium', sans-serif;
+    --subColor: #ff7a21;
+}
+/* Start Header */
+.header {
+    background-image: url(./../img/contact-page/breadcum.webp);
+    background-size: cover;
+    padding: 60px 0;
+}
+.header .contact-text h1 {
+    font-size: 30px;
+    font-family: var(--mainFont);
+}
+@media screen and (max-width:992px) {
+    .header .contact-text {
+        flex-direction: column;
+    }
+}
+/* End Header */
+/* Start Contact us */
+.contact-us .row h2 {
+    font-size: 23px;
+    font-family: var(--mainFont);
+    letter-spacing: .2px;
+    text-transform: capitalize;
+    position: relative;
+    padding-bottom: 15px;
+}
+.contact-us .row h2::before {
+    content: '';
+    position: absolute;
+    width: 70px;
+    border-bottom: 2px solid var(--subColor);
+    bottom: 0;
+    right: auto;
+}
+.contact-us .row .form-control  {
+    background-color: #1a1a1a;
+    border: 1px solid #313131;
+    color: #ffffff;
+}
+.contact-us .row label {
+    font-size: 14px;
+    color: #bfbfbf;
+}
+.form-floating>.form-control-plaintext~label::after,
+.form-floating>.form-control:focus~label::after,
+.form-floating>.form-control:not(:placeholder-shown)~label::after,
+.form-floating>.form-select~label::after {
+    position: absolute;
+    inset: 1rem 0.375rem;
+    z-index: -1;
+    height: 1.5em;
+    content: "";
+    background-color: var(--mainColor);
+    border-radius: var(--bs-border-radius);
+}
+
+.form-floating>.form-control-plaintext~label,
+.form-floating>.form-control:focus~label,
+.form-floating>.form-control:not(:placeholder-shown)~label,
+.form-floating>.form-select~label {
+    color: rgb(255, 255, 255, .75);
+    transform: scale(.85) translateY(-.5rem) translateX(.15rem);
+}
+.contact-us .row .form button {
+    background-color: var(--subColor) !important;
+    padding: 12PX 30PX;
+    font-size: 15PX;
+    margin-top: 30px;
+}
+/* End Contact us */
+/* Start location */
+iframe , .footer {
+    margin-top: 100px;
+}
+/* End location */

@@ -1,0 +1,68 @@
+:root {
+    --mainColor: #1a1a1a;
+    --mainFont: 'Oxanium', sans-serif;
+    --subColor: #ff7a21;
+}
+/* Start Header */
+.header {
+    background-image: url(./../img/contact-page/breadcum.webp);
+    background-size: cover;
+    padding: 60px 0;
+}
+.header .contact-text h1 {
+    font-size: 30px;
+    font-family: var(--mainFont);
+}
+@media screen and (max-width:992px) {
+    .header .contact-text {
+        flex-direction: column;
+    }
+}
+/* Start shopify-section */
+.shopify-section .col {
+    justify-content: center !important;
+    align-items: center !important;
+    display: flex;
+}
+.shopify-section .card {
+    width: 423px !important; 
+    background-color: transparent;
+    border: none;
+}
+.shopify-section .card .img {
+    overflow: hidden;
+}
+.shopify-section .card img {
+    transform: scale(1);
+    transition: .3s ease-in-out
+}
+.shopify-section .card .img:hover img {
+    transform: scale(1.1);
+}
+.shopify-section .card .date {
+    color: #a6a6a6;
+    font-family: Poppins, sans-serif;
+}
+.shopify-section .card .date i {
+    color: var(--subColor);
+    margin-right: 5px;
+}
+.shopify-section .card a {
+    display: inline-block;
+    color: #ffffff;
+    font-family: 'Oxanium', sans-serif;
+}
+.shopify-section .card a:hover {
+    color: var(--subColor);
+}
+.shopify-section .card p {
+    color: #a6a6a6;
+}
+.shopify-section .card a:last-of-type {
+    color: var(--subColor);
+    text-decoration: underline;
+}
+.shopify-section .card a:last-of-type:hover {
+    text-decoration: none;
+}
+/* End blog */
