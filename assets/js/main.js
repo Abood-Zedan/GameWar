@@ -15,75 +15,6 @@ const swiper1 = new Swiper('.header .swiper', {
     },
 });
 // End Header
-// Start Products
-const featured = document.querySelector('.our-Products .items-bar #featured');
-const bestseller = document.querySelector('.our-Products .items-bar #bestseller');
-const special = document.querySelector('.our-Products .items-bar #special');
-const columns = Array.from(document.querySelectorAll('.our-Products .row .ord'));
-
-featured.addEventListener('click', () => {
-    for (let i = 0; i < columns.length; i++) {
-        columns[i].style.order = i;
-    }
-    featured.classList.add('active');
-    bestseller.classList.remove('active');
-    special.classList.remove('active');
-});
-bestseller.addEventListener('click', () => {
-    for (let i = 0; i < columns.length; i++) {
-        columns[i].style.order = Math.floor(Math.random() * columns.length) + 1;
-    }
-    bestseller.classList.add('active');
-    featured.classList.remove('active');
-    special.classList.remove('active');
-});
-special.addEventListener('click', () => {
-    for (let i = 0; i < columns.length; i++) {
-        columns[i].style.order = Math.floor(Math.random() * columns.length) + 1;
-    }
-    special.classList.add('active');
-    bestseller.classList.remove('active');
-    featured.classList.remove('active');
-});
-
-const hearts = Array.from(document.querySelectorAll('.our-Products .product .heart'));
-const layer_groups = Array.from(document.querySelectorAll('.our-Products .product #layer-group'));
-const maximize = document.querySelector('.our-Products .product #maximize');
-
-const wishlist = document.querySelector('.navbar #wishlist span');
-let countHeart = 0;
-wishlist.textContent = `(${countHeart})`;
-
-hearts.forEach((heart) => {
-    heart.addEventListener('click', () => {
-        if (heart.classList.contains('fa-regular')) {
-            heart.classList.add('fa-solid');
-            heart.classList.remove('fa-regular');
-            countHeart++;
-        } else {
-            heart.classList.add('fa-regular');
-            heart.classList.remove('fa-solid');
-            countHeart--;
-        }
-        wishlist.textContent = `(${countHeart})`;
-
-    });
-})
-const compare = document.querySelector('.navbar #compare span');
-let countLayer = 0;
-compare.textContent = `(${countLayer})`;
-layer_groups.forEach((layer_group) => {
-    layer_group.addEventListener('click', () => {
-        layer_group.classList.toggle('active');
-        if (layer_group.classList.contains('active')) {
-            countLayer++;
-        } else {
-            countLayer--;
-        }
-        compare.textContent = `(${countLayer})`;
-    })
-});
-// End Products
 // Start feedback 
 const swiper2 = new Swiper('.feedback .swiper', {
     direction: 'horizontal',
@@ -187,7 +118,6 @@ const swiper4 = new Swiper('.tm-logo .swiper', {
 // End tm-logo
 // But back to top
 const but = document.querySelector('#but');
-console.log(but);
 
 window.onscroll = function () {
     if (scrollY >= 400) {
@@ -206,3 +136,137 @@ but.addEventListener('click', () => {
         behavior: 'smooth'
     });
 })
+// Start Products
+// order
+const featured = document.querySelector('.our-Products .items-bar #featured');
+const bestseller = document.querySelector('.our-Products .items-bar #bestseller');
+const special = document.querySelector('.our-Products .items-bar #special');
+const columns = Array.from(document.querySelectorAll('.our-Products .row .ord'));
+featured.addEventListener('click', () => {
+    for (let i = 0; i < columns.length; i++) {
+        columns[i].style.order = i;
+    }
+    featured.classList.add('active');
+    bestseller.classList.remove('active');
+    special.classList.remove('active');
+});
+bestseller.addEventListener('click', () => {
+    for (let i = 0; i < columns.length; i++) {
+        columns[i].style.order = Math.floor(Math.random() * columns.length) + 1;
+    }
+    bestseller.classList.add('active');
+    featured.classList.remove('active');
+    special.classList.remove('active');
+});
+special.addEventListener('click', () => {
+    for (let i = 0; i < columns.length; i++) {
+        columns[i].style.order = Math.floor(Math.random() * columns.length) + 1;
+    }
+    special.classList.add('active');
+    bestseller.classList.remove('active');
+    featured.classList.remove('active');
+});
+// wishlist
+const hearts = Array.from(document.querySelectorAll('.our-Products .product .heart'));
+const layer_groups = Array.from(document.querySelectorAll('.our-Products .product #layer-group'));
+
+const wishlist = document.querySelector('.navbar #wishlist span');
+let countHeart = 0;
+wishlist.textContent = `(${countHeart})`;
+
+hearts.forEach((heart) => {
+    heart.addEventListener('click', () => {
+        if (heart.classList.contains('fa-regular')) {
+            heart.classList.add('fa-solid');
+            heart.classList.remove('fa-regular');
+            countHeart++;
+        } else {
+            heart.classList.add('fa-regular');
+            heart.classList.remove('fa-solid');
+            countHeart--;
+        }
+        wishlist.textContent = `(${countHeart})`;
+    });
+})
+
+const compare = document.querySelector('.navbar #compare span');
+let countLayer = 0;
+compare.textContent = `(${countLayer})`;
+layer_groups.forEach((layer_group) => {
+    layer_group.addEventListener('click', () => {
+        layer_group.classList.toggle('active');
+        if (layer_group.classList.contains('active')) {
+            countLayer++;
+        } else {
+            countLayer--;
+        }
+        compare.textContent = `(${countLayer})`;
+    })
+});
+// Cart
+const but_carts = Array.from(document.querySelectorAll('.add-to-cart'));
+const cart = document.querySelector('#cart');
+const cart_price = document.querySelector('#cart span');
+let sumOFPrice = 0.00;
+let count_product = 0;
+cart_price.textContent = `(${count_product}) $${sumOFPrice}`;
+const add_to_cart = () => {
+    but_carts.forEach((but_cart) => {
+        but_cart.addEventListener('click', () => {
+            const textPrice = (but_cart.parentElement.firstElementChild.nextElementSibling.firstElementChild.textContent);
+            const price = parseFloat((textPrice).replace(/^\D+/g, ""));
+            count_product++;
+            sumOFPrice += price;
+            cart_price.textContent = `(${count_product}) $${sumOFPrice}`;
+        });
+    })
+};
+add_to_cart();
+
+// cart navbar
+document.getElementById('but_cart').addEventListener('click', function (event) {
+    event.preventDefault();
+});
+const add_cart = () => {
+    but_carts.forEach((but_cart) => {
+        but_cart.addEventListener('click', () => {
+            document.querySelector('.no-more-item').style.display = 'none';
+            const img = but_cart.parentElement.parentElement.previousElementSibling.firstElementChild.firstElementChild.src;
+            const titel = but_cart.parentElement.firstElementChild.textContent;
+            const textPrice = (but_cart.parentElement.firstElementChild.nextElementSibling.firstElementChild.textContent);
+            const price = parseFloat((textPrice).replace(/^\D+/g, ""));
+            const result = `<div class="cart-item w-100 d-flex align-items-center gap-2">
+                                <div class="img">
+                                    <img src="${img}" alt="" class="w-100">
+                                </div>
+                                <div class="item-information d-flex align-items-center">
+                                    <div class="product-item__title">
+                                        <h5 class="">${titel}</h5>
+                                        <span>$ ${price}</span>
+                                    </div>
+                                    <div class="remov align-self-start">
+                                        <i class="fa-regular fa-trash-can"></i>
+                                    </div>
+                                </div>
+                            </div>`;
+            document.querySelector('.cart-navbar .navbar-nav').innerHTML += result;
+            removeItem();
+        });
+    });
+};
+const removeItem = ()=> {
+    const removIcons = Array.from(document.querySelectorAll('.offcanvas .fa-regular '));
+    console.log(removIcons);
+    removIcons.forEach((icon)=>{
+        icon.addEventListener('click', () => {
+            const textPrice = (icon.parentElement.parentElement.firstElementChild.lastElementChild.textContent);
+            const price = parseFloat((textPrice).replace(/^\D+/g, ""));
+            sumOFPrice -= price;
+            count_product--;
+            cart_price.textContent = `(${count_product}) $${sumOFPrice}`;
+            icon.parentElement.parentElement.parentElement.classList.add('d-non');
+        });
+    })
+}
+add_cart();
+// End Products
