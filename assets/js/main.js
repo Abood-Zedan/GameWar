@@ -299,15 +299,14 @@ setTimeout(() => {
 const messages = ()=> {
     let arr = Array.from(document.querySelectorAll('.our-Products .product .card-img-top'));
     const mag = document.querySelector('.message');
-    mag.classList.add('d-non');
     let index = 0;
     setInterval(() => {
         setTimeout(() => {
             mag.firstElementChild.firstElementChild.firstElementChild.src = arr[index++].src;
-            mag.classList.remove('d-non');
+            mag.classList.remove('pos-let');
         }, 5000);
         setTimeout(() => {
-            mag.classList.add('d-non');
+            mag.classList.add('pos-let');
         }, 8000);
         if (index == arr.length) {
             index = 0;
