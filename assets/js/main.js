@@ -64,6 +64,17 @@ const swiper3 = new Swiper('.blog .swiper', {
     }
 });
 // End blog
+// active navbar 
+const activeNavbar = () => {
+    const itemLinks = Array.from(document.querySelectorAll('.nav-active .nav-link'));
+    itemLinks.forEach((itemLink) => {
+        itemLink.addEventListener('click', () => {
+            document.querySelector('.active').classList.remove('active');
+            itemLink.classList.add('active');
+        });
+    });
+};
+activeNavbar();
 // Start ramadan
 const countDown = () => {
     const countDownDate = new Date('2025-03-01T00:00:00').getTime();
@@ -254,19 +265,53 @@ const add_cart = () => {
         });
     });
 };
-const removeItem = ()=> {
+const removeItem = () => {
     const removIcons = Array.from(document.querySelectorAll('.offcanvas .fa-regular '));
     console.log(removIcons);
-    removIcons.forEach((icon)=>{
+    removIcons.forEach((icon) => {
         icon.addEventListener('click', () => {
             const textPrice = (icon.parentElement.parentElement.firstElementChild.lastElementChild.textContent);
             const price = parseFloat((textPrice).replace(/^\D+/g, ""));
             sumOFPrice -= price;
             count_product--;
             cart_price.textContent = `(${count_product}) $${sumOFPrice}`;
-            icon.parentElement.parentElement.parentElement.classList.add('d-non');
+            icon.parentElement.parentElement.parentElement.remove();
+            if (document.querySelector('.offcanvas .navbar-nav').childElementCount == 1) {
+                document.querySelector('.no-more-item').style.display = 'block';
+            }
         });
     })
 }
 add_cart();
 // End Products
+document.querySelector('main').style.display = 'none';
+document.querySelector('nav').style.display = 'none';
+document.querySelector('header').style.display = 'none';
+document.querySelector('footer').classList.add('d-non');
+setTimeout(() => {
+    document.querySelector('.lod').classList.add('d-non');;
+    document.querySelector('main').style.display = 'block';
+    document.querySelector('nav').style.display = 'block';
+    document.querySelector('header').style.display = 'block';
+    document.querySelector('footer').classList.remove('d-non');
+}, 1000);
+
+const messages = ()=> {
+    let arr = Array.from(document.querySelectorAll('.our-Products .product .card-img-top'));
+    const mag = document.querySelector('.message');
+    mag.classList.add('d-non');
+    let index = 0;
+    setInterval(() => {
+        setTimeout(() => {
+            mag.firstElementChild.firstElementChild.firstElementChild.src = arr[index++].src;
+            mag.classList.remove('d-non');
+        }, 5000);
+        setTimeout(() => {
+            mag.classList.add('d-non');
+        }, 8000);
+        if (index == arr.length) {
+            index = 0;
+        }
+    }, 10000);
+}
+messages();
